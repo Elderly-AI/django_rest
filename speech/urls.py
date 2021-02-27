@@ -1,4 +1,4 @@
-"""backend_api URL Configuration
+"""speech URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.1/topics/http/urls/
@@ -15,7 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from user.views import RegistrationCustomUserView
+from profiles.views import ChildProfileView, ParentProfileView, TeacherProfileView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/v1/registration', RegistrationCustomUserView.as_view(), name='registration'),
+    path('api/v1/profile/child', ChildProfileView.as_view(), name='profile'),
+    path('api/v1/profile/parent', ParentProfileView.as_view(), name='profile'),
+    path('api/v1/profile/teacher', TeacherProfileView.as_view(), name='profile'),
 ]
