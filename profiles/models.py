@@ -9,7 +9,7 @@ class ChildProfile(models.Model):
     sex = models.BooleanField(default=False)
 
     def __str__(self):
-        return str(self.main_user)
+        return str(self.custom_user)
 
 
 class ParentProfile(models.Model):
@@ -21,7 +21,7 @@ class ParentProfile(models.Model):
     sex = models.BooleanField(default=False)
 
     def __str__(self):
-        return str(self.main_user)
+        return str(self.custom_user)
 
 
 class TeacherProfile(models.Model):
@@ -35,4 +35,4 @@ class TeacherProfile(models.Model):
     specialization = models.CharField(max_length=32, default="")
 
     def __str__(self):
-        return str(self.main_user)
+        return str(self.custom_user)

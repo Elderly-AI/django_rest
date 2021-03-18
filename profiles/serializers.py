@@ -7,13 +7,17 @@ class ChildProfileSerializer(serializers.ModelSerializer):
         model = ChildProfile
         fields = ['first_name', 'age', 'sex']
 
+    def validate_user_type(self, custom_user):
+        if custom_user.user_type != 1:
+            raise serializers.ValidationError('You are not child')
+
     def save(self, custom_user):
-        first_name = self.validated_data['first_name']
-        age = self.validated_data['age']
-        sex = self.validated_data['sex']
-        ChildProfile.objects.create(custom_user=custom_user, first_name=first_name, age=age, sex=sex)
-        custom_user.status = 1
-        custom_user.save()
+        return ChildProfile.objects.create(
+            custom_user=custom_user,
+            first_name=self.validated_data['first_name'],
+            age=self.validated_data['age'],
+            sex=self.validated_data['sex']
+        )
 
 
 class ParentProfileSerializer(serializers.ModelSerializer):
@@ -21,18 +25,19 @@ class ParentProfileSerializer(serializers.ModelSerializer):
         model = ParentProfile
         fields = ['first_name', 'last_name', 'patronymic', 'phone_number', 'sex']
 
-    def save(self, custom_user):
-        first_name = self.validated_data['first_name']
-        last_name = self.validated_data['last_name']
-        patronymic = self.validated_data['patronymic']
-        phone_number = self.validated_data['phone_number']
-        sex = self.validated_data['sex']
+    def validate_user_type(self, custom_user):
+        if custom_user.user_type != 2:
+            raise serializers.ValidationError('You are not parent')
 
-        ParentProfile.objects.create(custom_user=custom_user, first_name=first_name,
-                                     last_name=last_name, patronymic=patronymic,
-                                     phone_number=phone_number, sex=sex)
-        custom_user.status = 2
-        custom_user.save()
+    def save(self, custom_user):
+        return ParentProfile.objects.create(
+            custom_user=custom_user,
+            first_name=self.validated_data['first_name'],
+            last_name=self.validated_data['last_name'],
+            patronymic=self.validated_data['patronymic'],
+            phone_number=self.validated_data['phone_number'],
+            sex=self.validated_data['sex']
+        )
 
 
 class TeacherProfileSerializer(serializers.ModelSerializer):
@@ -41,22 +46,23 @@ class TeacherProfileSerializer(serializers.ModelSerializer):
         fields = ['first_name', 'last_name', 'patronymic', 'phone_number',
                   'sex', 'about', 'specialization', 'certificates']
 
-    def save(self, custom_user):
-        first_name = self.validated_data['first_name']
-        last_name = self.validated_data['last_name']
-        patronymic = self.validated_data['patronymic']
-        phone_number = self.validated_data['phone_number']
-        sex = self.validated_data['sex']
-        about = self.validated_data['about']
-        specialization = self.validated_data['specialization']
-        certificates = self.validated_data['certificates']
+    def validate_user_type(self, custom_user):
+        if custom_user.user_type != 3:
+            raise serializers.ValidationError('You are not teacher')
 
-        TeacherProfile.objects.create(custom_user=custom_user, first_name=first_name,
-                                      last_name=last_name, patronymic=patronymic,
-                                      phone_number=phone_number, sex=sex, about=about,
-                                      specialization=specialization, certificates=certificates)
-        custom_user.status = 2
-        custom_user.save()
+    def save(self, custom_user):
+        return TeacherProfile.objects.create(
+            custom_user=custom_user,
+            first_name=self.validated_data['first_name'],
+            last_name=self.validated_data['last_name'],
+            patronymic=self.validated_data['patronymic'],
+            phone_number=self.validated_data['phone_number'],
+            sex=self.validated_data['sex'],
+            about=self.validated_data['about'],
+            specialization=self.validated_data['specialization'],
+            certificates=self.validated_data['certificates']
+        )
+
 
 
 

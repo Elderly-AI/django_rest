@@ -5,17 +5,17 @@ from user.models import CustomUser
 
 class AccountAdmin(BaseUserAdmin):
 
-    list_display = ('email', 'username', 'is_staff',  'is_superuser')
+    list_display = ('email', 'username', 'is_staff',  'is_superuser', 'is_active', 'user_type')
     list_filter = ('is_superuser',)
 
     fieldsets = (
-        (None, {'fields': ('email', 'is_staff', 'is_superuser', 'password')}),
+        (None, {'fields': ('email', 'is_staff', 'is_superuser', 'is_active', 'password', 'user_type')}),
         ('Groups', {'fields': ('groups',)}),
         ('Permissions', {'fields': ('user_permissions',)}),
     )
 
     add_fieldsets = (
-        (None, {'fields': ('email', 'is_staff', 'is_superuser', 'password')}),
+        (None, {'fields': ('email', 'is_staff', 'is_superuser', 'is_active', 'password', 'user_type')}),
         ('Groups', {'fields': ('groups',)}),
         ('Permissions', {'fields': ('user_permissions',)}),
     )

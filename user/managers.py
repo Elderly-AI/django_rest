@@ -8,11 +8,12 @@ class CustomAccountManager(BaseUserManager):
         user = self.model(username=username, email=email, password=password)
         user.set_password(password)
         user.is_staff = False
+        user.is_active = True
         user.is_superuser = False
         user.save(using=self.db)
         return user
 
-    def create_superuser(self, email, password, first_name, **kwargs):
+    def create_superuser(self, email, password, **kwargs):
         username = self.__get_username(email, password)
         user = self.model(username=username, email=email, password=password)
         user.is_active = True

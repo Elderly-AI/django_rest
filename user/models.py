@@ -8,7 +8,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length=128, unique=True)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=False)
-    status = models.IntegerField(choices=[(1, 'Child'), (2, 'Parent'), (3, 'Teacher')], default=0)
+    user_type = models.IntegerField(choices=[(1, 'Child'), (2, 'Parent'), (3, 'Teacher')], default=0)
 
     REQUIRED_FIELDS = ['email', 'password']
     USERNAME_FIELD = 'username'
