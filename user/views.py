@@ -19,7 +19,7 @@ class RegistrationCustomUserView(CreateAPIView):
         if serializer.is_valid():
             user = serializer.save()
             login(request, user)
-            return Response({'email': serializer.data['email']}, status=status.HTTP_200_OK)
+            return Response(serializer.data, status=status.HTTP_200_OK)
         else:
             data = serializer.errors
             return Response(data)
