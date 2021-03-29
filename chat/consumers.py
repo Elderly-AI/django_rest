@@ -3,7 +3,8 @@ from channels.generic.websocket import WebsocketConsumer
 from channels.consumer import AsyncConsumer
 from channels.generic.websocket import AsyncWebsocketConsumer
 
-class MyConsumer(AsyncWebsocketConsumer):
+
+class ChatConsumer(AsyncWebsocketConsumer):
     groups = ["broadcast"]
 
     async def connect(self):
@@ -29,7 +30,7 @@ class MyConsumer(AsyncWebsocketConsumer):
         # Want to force-close the connection? Call:
         await self.close()
         # Or add a custom WebSocket error code!
-        await self.close(code=4123)
+        # await self.close(code=4123)
 
     async def disconnect(self, close_code):
         pass  # TODO write this shit
