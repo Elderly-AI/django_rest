@@ -73,7 +73,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'speech.wsgi.application'
-ASGI_APPLICATION = 'chat.asgi.application'
+ASGI_APPLICATION = 'speech.asgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
