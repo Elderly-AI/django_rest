@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from user.views import RegistrationCustomUserView
 from profiles.views import ChildProfileView, ParentProfileView, TeacherProfileView
+from chat import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,4 +25,5 @@ urlpatterns = [
     path('api/v1/profile/child', ChildProfileView.as_view(), name='profile'),
     path('api/v1/profile/parent', ParentProfileView.as_view(), name='profile'),
     path('api/v1/profile/teacher', TeacherProfileView.as_view(), name='profile'),
+    path('', views.index, name='index'),
 ]
